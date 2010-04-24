@@ -110,6 +110,7 @@ alias less='less -N'
 alias grep='grep --color'
 alias ..='cd ..'
 alias cless='grep -v -e "-^$" -e "^[ \t]*#"'
+alias wl='wc -l'
 
 
 ## typo対策

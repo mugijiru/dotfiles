@@ -2,6 +2,9 @@ imap <C-h> <nop>
 imap <C-y> <nop>
 imap <C-k> <nop>
 imap <C-d> <nop>
+
 set hintmatching=custom
+set visualbell
+
 noremap <C-c><C-r> :so ~/.vimperatorrc<CR>:echo "config file loaded"<CR>
 
