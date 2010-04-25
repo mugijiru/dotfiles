@@ -118,13 +118,12 @@ alias l='ls'
 alias s='ls'
 alias ks='ls'
 alias snv='svn'
-
-
 alias c='cd'
 alias cd..='cd ..'
 
 # add original program path
-export PATH=/home/mugijiru/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games
+#export PATH=~/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games
+export PATH=~/bin:$PATH
 
 
 #export AUTOFEATURE=true
