@@ -620,7 +620,7 @@ and source-file directory for your debugger." t)
        '((sequence "TODO" "DOING(!)" "|" "DONE")))
 
 ; 開く時にorg-mobile-pullする
-(add-hook 'org-mode-hook 'org-mobile-pull)
+;(add-hook 'org-mode-hook 'org-mobile-pull)
 
 ; 保存時にorg-mobileにpushする。
 (add-hook 'org-mode-hook
