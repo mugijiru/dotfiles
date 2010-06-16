@@ -18,6 +18,31 @@ set backup
 " /tmp と /private/tmp ではバックアップを作らない
 set backupskip=/tmp/*,/private/tmp/*"
 
+" = や == の前後にスペースを付加
+inoremap <expr> = smartchr#one_of(' = ', ' == ', '=')
+
+" ">"を押すたびに、 > => => '' => "" を入力
+inoremap <expr> = smartchr#one_of(' > ', ' => ')
+
+
+" Tab と 改行 の可視化
+set list
+set listchars=tab:>-
+
+" 行末の空白文字を可視化
+highlight WhitespaceEOL ctermbg=red guibg=red
+match WhitespaceEOL /\s\+$/
+autocmd WinEnter * match WhitespaceEOL /\s\+$/
+
+" 行頭のTAB文字を可視化
+highlight TabSOL ctermbg=red guibg=red
+match TabSOL /^\t\+/
+autocmd WinEnter * match TabSOL /^\t\+/
+
+" 全角スペースの表示
+highlight ZenkakuSpace cterm=underline ctermbg=red guibg=red
+match ZenkakuSpace /　/
+
 autocmd FileType ruby,eruby set omnifunc=rubycomplete#Complete
 autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
 autocmd FileType ruby,eruby let g:rubycomplete_rails = 1

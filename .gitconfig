@@ -1,0 +1,14 @@
+[color]
+        ui = auto
+
+[alias]
+	st = status
+	ci = commit
+	co = checkout
+        df = diff
+        br = branch
+        tree = log --graph --pretty=oneline --decorate --date=short --abbrev-commit --branches
+
+[user]
+	name = mugijiru
+	email = kirinbiiru+pg@gmail.com

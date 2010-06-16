@@ -3,6 +3,7 @@
 if [ `uname` = "Linux" ]; then
   alias gemdir='cd /usr/lib/ruby/gems/1.8/gems/; pwd'
   alias ls='ls -FG --color=auto'
+  alias pcsuspend='sudo pm-suspend --quirk-s3-bios --quirk-s3-mode; xlock'
 fi
 
 ## Mac OS X
@@ -12,6 +13,7 @@ if [ `uname` = "Darwin" ]; then
   alias gemdir='cd /opt/local/lib/ruby/gems/1.8/gems/; pwd'
   alias nethack='jnethack'
   alias mysql='mysql5'
+  alias macvim='open /Applications/MacPorts/MacVim.app'
 
   export OPT_BINDIR='/opt/local/bin'
   export SVN_EDITOR='$OPT_BINDIR/vi'
@@ -91,7 +93,7 @@ alias tcat='cat ~/TODO.txt'
 alias tdel='rm ~/TODO.txt'
 alias ted='vi ~/TODO.txt'
 alias tless='less ~/TODO.txt'
-alias pcsuspend='sudo pm-suspend --quirk-s3-bios --quirk-s3-mode; xlock'
+alias cuke='cucumber'
 
 ## pipe系
 alias -g L='| lv -c'
