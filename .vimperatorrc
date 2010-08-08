@@ -3,8 +3,16 @@ imap <C-y> <nop>
 imap <C-k> <nop>
 imap <C-d> <nop>
 
+" migemo-hint の設定
 set hintmatching=custom
+
+
 set visualbell
 
 noremap <C-c><C-r> :so ~/.vimperatorrc<CR>:echo "config file loaded"<CR>
+
+highlight! Hint font-size: 15pt; background: white; color: black; border: 1px solid black; font-family: "Bitstream Vera Sans Mono",monaco,monospace;
+
+" hatenabookmark
+javascript if (typeof hBookmark != 'undefined') liberator.loadScript('chrome://hatenabookmark/content/vimperator/plugin/hatenabookmark.js', {__proto__: this});
 

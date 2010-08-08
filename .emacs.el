@@ -38,14 +38,25 @@
 (if (file-directory-p (expand-file-name "~/.emacs.d/auto-install/"))
     (add-to-list 'load-path "~/.emacs.d/auto-install/"))
 
+(if (file-directory-p (expand-file-name "~/.emacs.d/twittering-mode/"))
+    (add-to-list 'load-path "~/.emacs.d/twittering-mode/"))
+
+;; info path
+;(add-to-list 'Info-directory-list "~/info")
 
 ;; SKKの設定(日本語入力)
-;(if (not (eq window-system 'mac))
-;    (progn
-;      (require 'skk-autoloads)
-;      (global-set-key "\C-x\C-j" 'skk-mode)))
 (require 'skk-autoloads)
 (global-set-key "\C-x\C-j" 'skk-mode)
+
+
+;半角で入力したい文字
+;(setq skk-rom-kana-rule-list
+;  (nconc skk-rom-kana-rule-list
+;    '((";" nil nil)
+;      (":" nil nil)
+;      ("?" nil nil)
+;      ("!" nil nil)
+;)))
 
 (if (eq window-system 'mac)
     (progn
@@ -136,6 +147,9 @@
 ; 対応する括弧を光らせる
 (show-paren-mode t)
 
+; タブ幅を2に
+(setq-default tab-width 2)
+
 ; 括弧が画面外にある場合は括弧内をハイライト表示
 (set-face-background 'show-paren-match-face "gray10")
 (set-face-foreground 'show-paren-match-face "SkyBlue")
@@ -181,7 +195,8 @@
 
 ; モードラインの行番号非表示
 ; 左に行数が表示されているため
-(line-number-mode nil)
+; と思ったけどlinumとorgが相性悪いのでコメントアウト
+;(line-number-mode nil)
 
 ; モードラインに行頭からの位置を表示
 (column-number-mode t)
@@ -296,6 +311,7 @@
 (define-key global-map "\C-x\ y" 'toggle-view-mode)
 
 
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
 ;; ファイル検索など
@@ -303,8 +319,11 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; recentf-mode(最近使ったファイル一覧)
-(require 'recentf)
-(recentf-mode t)
+;(require 'recentf)
+(setq recentf-auto-cleanup 'never)
+(setq recentf-max-saved-items 500)
+(require 'recentf-ext)
+;(recentf-mode t)
 
 ;; anything.el(なんでもここから開いたり実行したり)
 (require 'anything-config)
@@ -313,6 +332,8 @@
 (require 'anything-migemo)
 (require 'anything-emms)
 ;(setq anything-use-migemo nil)
+(require 'anything-hatena-bookmark)
+(setq anything-hatena-bookmark-samewindow t)
 
 (add-to-list 'anything-c-source-emms-dired '(migemo))
 (add-to-list 'anything-c-source-emms-directory '(migemo))
@@ -328,14 +349,15 @@
                              anything-c-source-file-name-history
                              anything-c-source-arrived-url-history
                              anything-c-source-emacs-commands
+                             anything-c-source-hatena-bookmark
                              anything-c-source-emms-dired
                              anything-c-source-emms-directory
+                             anything-c-source-man-pages
 ;                             anything-c-source-emms-playlist
 ;                             anything-c-source-emms-file
                              anything-c-source-locate
                              anything-c-source-minibuffer-history
                              anything-c-source-bookmarks
-                             anything-c-source-man-pages
 ;                             anything-c-source-top
                              ))
 (if (eq window-system 'mac)
@@ -394,14 +416,13 @@
 ;; yasnippetのロード
 (require 'yasnippet)
 (yas/initialize)
-(yas/load-directory "~/.emacs.d/site-lisp/yasnippets-rails/rails-snippets/")
+;(yas/load-directory "~/.emacs.d/site-lisp/yasnippets-rails/rails-snippets/")
+(yas/load-directory "~/.emacs.d/site-lisp/yasnippets-rails/")
 ;(yas/load-directory "~/.emacs.d/site-lisp/snippets/")
 
 ;; yaml-mode
-(if (eq window-system 'mac)
-    (progn
-      (require 'yaml-mode)
-      (add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode))))
+(require 'yaml-mode)
+(add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -455,7 +476,18 @@ and source-file directory for your debugger." t)
 (add-to-list 'auto-mode-alist '("\\.sass$" . sass-mode))
 
 
-;;;; その他プログラム周り
+;; js2-mode
+(autoload 'js2-mode "js2" nil t)
+(add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
+
+;;;; elisp周り
+
+;; elispの自動非同期コンパイル
+(require 'auto-async-byte-compile)
+;(setq auto-async-byte-compile-exclude-files-regexp "\\(/junk/|\\.emacs\\.el\\)")
+;(add-hook 'emacs-lisp-mode-hook 'enable-auto-async-byte-compile-mode)
+
+;;;;他プログラム周り
 
 ; 使ってないからとりあえずcomment out
 ;;; actionscript-mode
@@ -560,6 +592,11 @@ and source-file directory for your debugger." t)
 (global-set-key (kbd "C-c C-d") 'doc-view)
 
 ;; ansi-term(シェル操作)
+
+; Mac(CarbonEmacs)ではterminfoを使わない
+(if (eq window-system 'mac)
+    (setq system-uses-terminfo nil))
+
 (require 'term)
 (global-set-key "\C-c\C-t" '(lambda ()(interactive)(ansi-term "/bin/zsh")))
 (defvar ansi-term-after-hook nil)
@@ -598,34 +635,65 @@ and source-file directory for your debugger." t)
 
 
 ;; org-mode(GTDなど)
-(require 'org-install)
 (require 'org)
+(require 'org-install)
+
+(custom-set-variables
+ '(org-export-default-language "ja")
+)
 
 (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
 (define-key global-map "\C-cl" 'org-store-link)
 (define-key global-map "\C-ca" 'org-agenda)
 (define-key global-map "\C-cb" 'org-iswitchb)
+
 (setq org-log-done t)
-(setq org-agenda-files (list "~/org/hha.org" "~/org/hrm.org"))
+(setq org-return-follows-link t)
+(org-remember-insinuate)
+(setq org-agenda-files (list "~/org/projects.org"))
 (define-key org-mode-map [(shift control return)] 'org-insert-todo-heading)
 (add-hook 'org-mode-hook 'turn-on-font-lock)
 (setq org-mobile-directory "~/Dropbox/MobileOrg")
-;(setq org-mobile-inbox-for-pull "~/org/hrm.org")
+
+(setq org-remember-templates
+      '(("Todo" ?t "* TODO %?\n  %i\n  %a" "~/org/projects.org" "Tasks")))
+;        ("Journal" ?j "* %U %?\n\n  %i\n  %a" "~/org/JOURNAL.org")
+;        ("Idea" ?i "* %^{Title}\n  %i\n  %a" "~/org/JOURNAL.org" "New Ideas")))
+
+
 (defun org-summary-todo (n-done n-not-done)
   "サブエントリーのステータスが全てDONEになったら親エントリーのステータスもDONEにする"
   (let (org-log-done org-log-states)   ; turn off logging
-    (org-todo (if (= n-not-done 0) "DONE" "TODO"))))
+    (org-todo (if (= n-not-done 0) "DONE" "DOING"))))
 (add-hook 'org-after-todo-statistics-hook 'org-summary-todo)
+
+(defun org-summary-todo-doing (n-done n-not-done)
+  "サブエントリーのステータスが全てDONEになったら親エントリーのステータスもDONEにする"
+  (let (org-log-done org-log-states)   ; turn off logging
+    (org-todo (if (= n-not-done 0) "DOING" "TODO"))))
+(add-hook 'org-after-todo-statistics-hook 'org-summary-todo)
+
 (setq org-todo-keywords
        '((sequence "TODO" "DOING(!)" "|" "DONE")))
 
-; 開く時にorg-mobile-pullする
-;(add-hook 'org-mode-hook 'org-mobile-pull)
+; デフォルトのキーバインドを全て殺して、
+; my-org-mode-mapで定義したキーバインドを読み込む。
+; これでぶつかったキーバインドとおさらば
+;(add-hook 'org-mode-hook
+;  (lambda()
+;    (setq org-goto-map (make-keymap))
+;    (setq org-agenda-mode-map (make-keymap))
+;    (setq org-cdlatex-mode-map (make-keymap))
+;    (setq org-exit-edit-mode-map (make-keymap))
+;    (setq org-goto-local-auto-isearch-map (make-keymap))
+;    (setq org-mode-map (make-keymap))
+;    (setq org-mouse-map (make-keymap))
+;    (setq orgstruct-mode-map (make-keymap))
+;    (setq my-org-mode-map (make-keymap))
+;    (use-local-map my-org-mode-map)
+;    (define-key my-org-mode-map (kbd "TAB") 'org-cycle ;使いたいキーバインドだけ定義していく
+;))
 
-; 保存時にorg-mobileにpushする。
-(add-hook 'org-mode-hook
-          (lambda() (add-hook 'after-save-hook
-                              'org-mobile-push t)))
 ;; screenshot.el
 ;(require 'screenshot)
 ;(setq screenshot-schemes              ; edit as you like
@@ -646,11 +714,157 @@ and source-file directory for your debugger." t)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; auto-install.el
+;; (install-elisp-from-emacswiki "auto-install.el")
 (require 'auto-install)
 (setq auto-install-directory "~/.emacs.d/auto-install/")
-;(auto-install-update-emacswiki-package-name t)
+;; 起動時にEmacsWikiのページ名を補完候補に加える
+(auto-install-update-emacswiki-package-name t)
+;; install-elisp.el互換モードにする
 (auto-install-compatibility-setup)
 (global-set-key "\C-c\C-i" 'auto-install-from-emacswiki)
 ;(require 'oddmuse) ; EmacsWikiページの補完
+;; ediff関連のバッファを1つのフレームにまとめる
+(setq ediff-window-setup-function 'ediff-setup-windows-plain)
 
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;; 追加して未整理のもの
+;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; tramp -- ネットワーク上のファイルを操作する
+(require 'tramp)
+(setq tramp-default-method "sshx")
+(setq tramp-debug-buffer t)
+
+;; grep-edit -- lgrep, rgrepの結果をそのまま編集
+
+(require 'grep-edit)
+
+;;; sdic-mode 用の設定
+(setq load-path (cons "/usr/local/share/emacs/site-lisp" load-path))
+(autoload 'sdic-describe-word "sdic" "英単語の意味を調べる" t nil)
+(global-set-key "\C-cw" 'sdic-describe-word)
+(autoload 'sdic-describe-word-at-point "sdic" "カーソルの位置の英単語の意味を調べる" t nil)
+(global-set-key "\C-cW" 'sdic-describe-word-at-point)
+
+(if (not (eq window-system 'mac))
+    (setq sdic-eiwa-dictionary-list '((sdicf-client "/usr/local/share/dict/gene.sdic"))
+          sdic-waei-dictionary-list '((sdicf-client "/usr/local/share/dict/jedict.sdic"
+                                                    (add-keys-to-headword t)))))
+
+
+;;; This was installed by package-install.el.
+;;; This provides support for the package system and
+;;; interfacing with ELPA, the package archive.
+;;; Move this code earlier if you want to reference
+;;; packages in your .emacs.
+(when
+    (load
+     (expand-file-name "~/.emacs.d/elpa/package.el"))
+  (package-initialize))
+
+
+;; 履歴を次回Emacs起動時にも保存する
+(savehist-mode t)
+(require 'saveplace)
+
+;; 履歴保存量を多めに
+(setq history-length 1000)
+
+;; GCを減らして軽くする(デフォルトの10倍)
+;; 現在のマシンパワーえはもっと大きくしてもいい、らしい
+(setq gc-cons-threshold (* 10 gc-cons-threshold))
+
+;; ログの記録行数を増やす
+(setq message-log-max 10000)
+
+;; ミニバッファを再帰的に呼び出せるように
+(setq enable-recursive-minibuffers t)
+
+;; ダイアログボックスを使わないようにする
+(setq use-dialog-box nil)
+(defalias 'message-box 'message)
+
+;; キーストロークのエコーエリアへの表示を素早く
+(setq echo-keystrokes 0.1)
+
+;; (auto-install-batch sequential-command)
+;; 単機能のコマンドを複数回押すことで挙動を変える
+(require 'sequential-command-config)
+(sequential-command-setup-keys)
+
+;; 現在のカーソル位置に書いてあるファイル/URLをC-x C-fの開くファイルのデフォルトにする
+(ffap-bindings)
+
+;; ブックマークを変更したら即保存する
+(setq bookmark-save-flag t)
+
+;; (auto-install-from-emacswiki 'tempbuf)
+;; 古いバッファを自動的に削除
+(require 'tempbuf)
+;; ファイルを開いたら自動的にtempbufを有効にする
+(add-hook 'find-file-hooks 'turn-on-tempbuf-mode)
+;; diredバッファでも有効に
+(add-hook 'dired-mode-hook 'turn-on-tempbuf-mode)
+
+
+;; diredバッファを普通のファイルのように操作するwdired
+(define-key dired-mode-map "r" 'wdired-change-to-wdired-mode)
+
+;; redo+.el
+;; (install-from-emacswiki 'redo+.el)
+(require 'redo+)
+(global-set-key (kbd "C-M-/") 'redo)
+(setq undo-no-redo t) ; 過去のundoがredoされないように
+;; 大量のundoに耐えられるように
+(setq undo-limit 600000)
+(setq undo-strong-limit 900000)
+
+;; 矩形選択をやりやすく
+;; (auto-install-from-url http://www.taiyaki.org/elisp/sense-region/src/sense-region.el)
+(require 'sense-region)
+(sense-region-on)
+
+;; 現在の桁をハイライト表示
+(require 'col-highlight)
+;; 常にハイライト表示
+;(column-highlight-mode nil)
+;; 何もしないでいるとハイライトするように
+(toggle-highlight-column-when-idle t)
+(col-highlight-set-interval 6) ;6秒間放置するとハイライト表示
+
+;; paredit.el
+;; ELPAのpackage-list-packages から i で選んで xでインスコ
+
+(require 'paredit)
+(add-hook 'emacs-lisp-mode-hook 'enable-paredit-mode)
+(add-hook 'lisp-interaction-mode-hook 'enable-paredit-mode)
+(add-hook 'lisp-mode-hook 'enable-paredit-mode)
+(add-hook 'ielm-mode-hook 'enable-paredit-mode)
+
+
+;; open-junk-file
+;; (install-elisp-from-emacswiki open-junk-file.el)
+
+(require 'open-junk-file)
+(setq open-junk-file-format "~/junk/%Y-%m-%d-%H%M%S.")
+
+;;; summarye.el
+;;; (install-elisp-from-emacswiki summarye.el)
+(require 'summarye)
+
+;;; text translator
+;;; (auto-install-batch "text translator")
+(require 'text-translator)
+(setq text-translator-auto-selection-func
+      'text-translator-translate-by-auto-selection-enja)
+
+;;; ediff で EdiffControllPanel専用フレームを出さないように
+(setq ediff-window-setup-function 'ediff-setup-windows-plain)
+
+;;; ブロックを折り畳む
+;;; (install-elisp http://www.dur.ac.uk/p.j.heslin/emacs/download/fold-dwim.el)
+(require 'hideshow)
+(require 'fold-dwim)
