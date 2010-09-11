@@ -22,7 +22,7 @@ if [ `uname` = "Darwin" ]; then
   export AWS_ELB_HOME=/usr/local/ElasticLoadBalancing
   export PATH=$PATH:$JAVA_HOME/bin:$EC2_HOME/bin:$AWS_ELB_HOME/bin
 
-  
+
   if [[ -s /Users/nuehara/.private.zshrc ]] ; then
     source ~/.private.zshrc
   fi
@@ -81,10 +81,15 @@ autoload -Uz compinit
 compinit
 # End of lines added by compinstall
 
-
 # TAB関係
 zstyle ':completion:*' list-colors ''
 
+
+# URLの文字列を自動的にescape
+autoload -Uz url-quote-magic
+
+# clipboardから貼り付けた時もescape
+zle -N self-insert url-quote-magic
 
 # aliases
 ##便利系
