@@ -9,6 +9,7 @@ fi
 ## Mac OS X
 if [ `uname` = "Darwin" ]; then
   alias ls='ls -FG'
+  alias top='top -o cpu'
   alias netbeans='open /Applications/NetBeans/NetBeans\ 6.5.app'
   alias gemdir='cd /opt/local/lib/ruby/gems/1.8/gems/; pwd'
   alias nethack='jnethack'
@@ -23,21 +24,33 @@ if [ `uname` = "Darwin" ]; then
   export PATH=$PATH:$JAVA_HOME/bin:$EC2_HOME/bin:$AWS_ELB_HOME/bin
 
 
-  if [[ -s /Users/nuehara/.private.zshrc ]] ; then
+  if [[ -s ~/.private.zshrc ]] ; then
     source ~/.private.zshrc
   fi
 
-  if [[ -s /Users/nuehara/.rvm/scripts/rvm ]] ; then
-    source /Users/nuehara/.rvm/scripts/rvm
+  if [[ -s ~/.rvm/scripts/rvm ]] ; then
+    source ~/.rvm/scripts/rvm
   fi
 fi
 
 
 # ENV
 export LANG=ja_JP.UTF-8
+export HGENCODING=utf-8
 
 # PROMPT
 PROMPT='%n@%m:%(5~,%-2~/.../%2~,%~)%# '
+
+# RPROMPT(ブランチ名を表示するとか)
+autoload -Uz vcs_info
+zstyle ':vcs_info:*' formats '(%s)-[%b]'
+zstyle ':vcs_info:*' actionformats '(%s)-[%b|%a]'
+precmd () {
+  psvar=()
+  LANG=en_US.UTF-8 vcs_info
+  [[ -n "$vcs_info_msg_0_" ]] && psvar[1]="$vcs_info_msg_0_"
+}
+RPROMPT="%1(v|%F{green}%1v%f|)"
 
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.histfile
@@ -45,6 +58,9 @@ HISTSIZE=100000000
 SAVEHIST=100000000
 
 setopt autocd extendedglob
+
+# ri なんかで怒られないように
+setopt nonomatch
 
 # 履歴ファイルに時刻を記録
 setopt extended_history
@@ -91,6 +107,10 @@ autoload -Uz url-quote-magic
 # clipboardから貼り付けた時もescape
 zle -N self-insert url-quote-magic
 
+# emacs で zsh が使えるように
+[[ $TERM = "eterm-color" ]] && TERM=xterm-color
+
+
 # aliases
 ##便利系
 alias todo='echo $1 >> ~/TODO.txt'
@@ -118,6 +138,7 @@ alias grep='grep --color'
 alias ..='cd ..'
 alias cless='grep -v -e "-^$" -e "^[ \t]*#"'
 alias wl='wc -l'
+alias mplayer='mplayer -fs'
 
 
 ## typo対策
