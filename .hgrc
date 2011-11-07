@@ -1,0 +1,16 @@
+[extensions]
+# pull,merge,updateを一回でやるやつ。便利。
+fetch =
+
+# 「hg glog」でログをツリー形式で表示するよ
+graphlog =
+
+# git みたいに pager で繋いでくれる。
+pager =
+
+# 色付きにしてくれるよ。見易い!
+color =
+
+# よくわからんけどpagerの設定
+[pager]
+pager = LESS='-FRSX' less
