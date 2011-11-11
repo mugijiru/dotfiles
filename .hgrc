@@ -11,6 +11,11 @@ pager =
 # 色付きにしてくれるよ。見易い!
 color =
 
+mq =
+
 # よくわからんけどpagerの設定
 [pager]
 pager = LESS='-FRSX' less
+
+[ui]
+username = Mugijiru
