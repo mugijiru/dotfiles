@@ -29,7 +29,8 @@ export LANG=ja_JP.UTF-8
 export HGENCODING=utf-8
 
 # PROMPT
-PROMPT='%n@%m:%(5~,%-2~/.../%2~,%~)%# '
+PROMPT='%n@%m:%(5~,%-2~/.../%2~,%~)
+%# '
 
 # RPROMPT(ブランチ名を表示するとか)
 autoload -Uz vcs_info
