@@ -11,7 +11,6 @@ if [ `uname` = "Darwin" ]; then
   alias top='top -o cpu'
   alias nethack='jnethack'
   alias mysql='mysql5'
-  alias macvim='open /Applications/MacPorts/MacVim.app'
 
   export OPT_BINDIR='/opt/local/bin'
   export SVN_EDITOR='$OPT_BINDIR/vi'
