@@ -27,10 +27,6 @@ if [ `uname` = "Darwin" ]; then
   if [[ -s ~/.private.zshrc ]] ; then
     source ~/.private.zshrc
   fi
-
-  if [[ -s ~/.rvm/scripts/rvm ]] ; then
-    source ~/.rvm/scripts/rvm
-  fi
 fi
 
 
@@ -155,4 +151,3 @@ export PATH=~/bin:$PATH
 
 
 #export AUTOFEATURE=true
-
