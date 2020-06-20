@@ -1,7 +1,6 @@
 # 環境判定
 ## Linux(Ubuntu)
 if [ `uname` = "Linux" ]; then
-  alias gemdir='cd /usr/lib/ruby/gems/1.8/gems/; pwd'
   alias ls='ls -FG --color=auto'
   alias pcsuspend='sudo pm-suspend --quirk-s3-bios --quirk-s3-mode; xlock'
 fi
@@ -10,7 +9,6 @@ fi
 if [ `uname` = "Darwin" ]; then
   alias ls='ls -FG'
   alias top='top -o cpu'
-  alias gemdir='cd /opt/local/lib/ruby/gems/1.8/gems/; pwd'
   alias nethack='jnethack'
   alias mysql='mysql5'
   alias macvim='open /Applications/MacPorts/MacVim.app'
