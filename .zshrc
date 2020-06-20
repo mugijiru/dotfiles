@@ -13,7 +13,6 @@ if [ `uname` = "Darwin" ]; then
   alias mysql='mysql5'
 
   export OPT_BINDIR='/opt/local/bin'
-  export SVN_EDITOR='$OPT_BINDIR/vi'
   export JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Versions/1.6/Home
   export EC2_HOME=/usr/local/ec2-api-tools
   export AWS_ELB_HOME=/usr/local/ElasticLoadBalancing
