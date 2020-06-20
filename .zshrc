@@ -80,17 +80,18 @@ setopt pushd_ignore_dups
 # コマンド名をミスった時に「ほんとにええのんか?」って聞いてくる
 setopt correct
 
+# Emacs 風のキーバインドにする
 bindkey -e
+
 # End of lines configured by zsh-newuser-install
 # The following lines were added by compinstall
 zstyle :compinstall filename "$HOME/.zshrc"
-
 
 autoload -Uz compinit
 compinit
 # End of lines added by compinstall
 
-# TAB関係
+# 補完時に色設定。正直、この設定で何が変わってるのかわかってない
 zstyle ':completion:*' list-colors ''
 
 
@@ -100,7 +101,7 @@ autoload -Uz url-quote-magic
 # clipboardから貼り付けた時もescape
 zle -N self-insert url-quote-magic
 
-# emacs で zsh が使えるように
+# emacs(ansi-term) で zsh が使えるように
 [[ $TERM = "eterm-color" ]] && TERM=xterm-color
 
 
