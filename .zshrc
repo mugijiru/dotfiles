@@ -17,7 +17,6 @@ if [ `uname` = "Darwin" ]; then
   export AWS_ELB_HOME=/usr/local/ElasticLoadBalancing
   export PATH=$PATH:$JAVA_HOME/bin:$EC2_HOME/bin:$AWS_ELB_HOME/bin
 
-
   if [[ -s ~/.private.zshrc ]] ; then
     source ~/.private.zshrc
   fi
@@ -76,6 +75,8 @@ setopt auto_pushd
 
 # 重複した dir を push しない
 setopt pushd_ignore_dups
+
+# コマンド名をミスった時に「ほんとにええのんか?」って聞いてくる
 setopt correct
 
 bindkey -e
