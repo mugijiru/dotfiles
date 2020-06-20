@@ -10,7 +10,6 @@ fi
 if [ `uname` = "Darwin" ]; then
   alias ls='ls -FG'
   alias top='top -o cpu'
-  alias netbeans='open /Applications/NetBeans/NetBeans\ 6.5.app'
   alias gemdir='cd /opt/local/lib/ruby/gems/1.8/gems/; pwd'
   alias nethack='jnethack'
   alias mysql='mysql5'
