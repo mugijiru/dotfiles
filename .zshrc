@@ -107,15 +107,8 @@ zle -N self-insert url-quote-magic
 # Macの日本語ファイル名(濁点など)対策に
 setopt combining_chars
 
-# aliases
-##便利系
-alias todo='echo $1 >> ~/TODO.txt'
-alias tcat='cat ~/TODO.txt'
-alias tdel='rm ~/TODO.txt'
-alias ted='vi ~/TODO.txt'
-alias tless='less ~/TODO.txt'
-alias cuke='cucumber'
 
+# aliases
 ## pipe系
 alias -g L='| lv -c'
 alias -g H='| head'
