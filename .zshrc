@@ -47,7 +47,7 @@ HISTFILE=~/.histfile
 HISTSIZE=100000000
 SAVEHIST=100000000
 
-setopt autocd extendedglob
+setopt extended_glob
 
 # ri なんかで怒られないように
 setopt nonomatch
