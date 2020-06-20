@@ -104,6 +104,8 @@ zle -N self-insert url-quote-magic
 # emacs(ansi-term) で zsh が使えるように
 [[ $TERM = "eterm-color" ]] && TERM=xterm-color
 
+# Macの日本語ファイル名(濁点など)対策に
+setopt combining_chars
 
 # aliases
 ##便利系
