@@ -47,10 +47,10 @@ HISTFILE=~/.histfile
 HISTSIZE=100000000
 SAVEHIST=100000000
 
+# 除外パターンなどを使えるようにする
 setopt extended_glob
 
-# ri なんかで怒られないように
-setopt nonomatch
+# git show HEAD^ とか rake foo[bar] で glob 扱いで使えなくならないようにする
 setopt no_nomatch
 
 # 履歴ファイルに時刻を記録
