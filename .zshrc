@@ -51,6 +51,7 @@ setopt extended_glob
 
 # ri なんかで怒られないように
 setopt nonomatch
+setopt no_nomatch
 
 # 履歴ファイルに時刻を記録
 setopt extended_history
