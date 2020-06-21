@@ -112,7 +112,7 @@ setopt combining_chars
 ## pipe系
 alias -g L='| lv -c'
 alias -g H='| head'
-alias -g T='| tail'
+alias -g T='| tail -F'
 alias -g G='| grep'
 
 ## 短縮系
