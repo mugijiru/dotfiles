@@ -1,28 +1,3 @@
-# 環境判定
-## Linux(Ubuntu)
-if [ `uname` = "Linux" ]; then
-  alias ls='ls -FG --color=auto'
-  alias pcsuspend='sudo pm-suspend --quirk-s3-bios --quirk-s3-mode; xlock'
-fi
-
-## Mac OS X
-if [ `uname` = "Darwin" ]; then
-  alias ls='ls -FG'
-  alias top='top -o cpu'
-  alias nethack='jnethack'
-  alias mysql='mysql5'
-
-  export JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Versions/1.6/Home
-  export EC2_HOME=/usr/local/ec2-api-tools
-  export AWS_ELB_HOME=/usr/local/ElasticLoadBalancing
-  export PATH=$PATH:$JAVA_HOME/bin:$EC2_HOME/bin:$AWS_ELB_HOME/bin
-
-  if [[ -s ~/.private.zshrc ]] ; then
-    source ~/.private.zshrc
-  fi
-fi
-
-
 # ENV
 export LANG=ja_JP.UTF-8
 export HGENCODING=utf-8
@@ -138,3 +113,27 @@ alias cd..='cd ..'
 
 
 export PATH=~/bin:$PATH
+
+# 環境判定
+## Linux(Ubuntu)
+if [ `uname` = "Linux" ]; then
+  alias ls='ls -FG --color=auto'
+  alias pcsuspend='sudo pm-suspend --quirk-s3-bios --quirk-s3-mode; xlock'
+fi
+
+## Mac OS X
+if [ `uname` = "Darwin" ]; then
+  alias ls='ls -FG'
+  alias top='top -o cpu'
+  alias nethack='jnethack'
+  alias mysql='mysql5'
+
+  export JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Versions/1.6/Home
+  export EC2_HOME=/usr/local/ec2-api-tools
+  export AWS_ELB_HOME=/usr/local/ElasticLoadBalancing
+  export PATH=$PATH:$JAVA_HOME/bin:$EC2_HOME/bin:$AWS_ELB_HOME/bin
+
+  if [[ -s ~/.private.zshrc ]] ; then
+    source ~/.private.zshrc
+  fi
+fi
