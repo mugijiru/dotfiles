@@ -114,7 +114,6 @@ alias -g L='| lv -c'
 alias -g H='| head'
 alias -g T='| tail'
 alias -g G='| grep'
-alias -g S='| sed'
 
 ## 短縮系
 alias vi='vim'
