@@ -133,5 +133,6 @@ alias ks='ls'
 alias snv='svn'
 alias c='cd'
 alias cd..='cd ..'
+alias ss='ssh $(grep -iE "^host[[:space:]]+[^*]" ~/.ssh/config|sort|uniq|peco|awk "{print \$2}")'
 
 export PATH=~/bin:$PATH
