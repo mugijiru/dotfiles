@@ -123,6 +123,9 @@ alias grep='grep --color'
 alias ..='cd ..'
 alias cless='grep -v -e "-^$" -e "^[ \t]*#"' # 空行とコメント行を抜いて見るため
 alias mplayer='mplayer -fs'
+if [ -x "$(command -v peco)" ]; then
+    alias ss='ssh $(grep -iE "^host[[:space:]]+[^*]" ~/.ssh/config|sort|uniq|peco|awk "{print \$2}")'
+fi
 
 
 ## typo対策
@@ -132,6 +135,6 @@ alias ks='ls'
 alias snv='svn'
 alias c='cd'
 alias cd..='cd ..'
-alias ss='ssh $(grep -iE "^host[[:space:]]+[^*]" ~/.ssh/config|sort|uniq|peco|awk "{print \$2}")'
+
 
 export PATH=~/bin:$PATH
