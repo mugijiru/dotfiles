@@ -114,10 +114,7 @@ alias -g L='| lv -c'
 alias -g H='| head'
 alias -g T='| tail'
 alias -g G='| grep'
-#alias -g W='| wc'
 alias -g S='| sed'
-#alias -g A='| awk'
-
 
 ## 短縮系
 alias vi='vim'
@@ -138,9 +135,4 @@ alias snv='svn'
 alias c='cd'
 alias cd..='cd ..'
 
-# add original program path
-#export PATH=~/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games
 export PATH=~/bin:$PATH
-
-
-#export AUTOFEATURE=true
