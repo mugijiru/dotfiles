@@ -107,10 +107,6 @@ if [ -x "$(command -v mplayer)" ]; then
     alias mplayer='mplayer -fs'
 fi
 
-if [ -x "$(command -v peco)" ]; then
-    alias ss='ssh $(grep -iE "^host[[:space:]]+[^*]" ~/.ssh/config|sort|uniq|peco|awk "{print \$2}")'
-fi
-
 
 ## typo対策
 alias l='ls'
@@ -119,6 +115,12 @@ alias ks='ls'
 alias snv='svn'
 alias c='cd'
 alias cd..='cd ..'
+
+
+# peco
+if [ -e ~/.peco.zshrc -a -x "$(command -v peco)" ]; then
+  source ~/.peco.zshrc
+fi
 
 
 export PATH=~/bin:$PATH
