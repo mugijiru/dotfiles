@@ -117,9 +117,12 @@ alias c='cd'
 alias cd..='cd ..'
 
 
-# peco
 if [ -e ~/.peco.zshrc -a -x "$(command -v peco)" ]; then
   source ~/.peco.zshrc
+fi
+
+if [ -e ~/.gnumeric.zshrc ]; then
+  source ~/.gnumeric.zshrc
 fi
 
 
