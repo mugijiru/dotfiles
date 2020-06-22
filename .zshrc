@@ -121,6 +121,12 @@ alias c='cd'
 alias cd..='cd ..'
 
 
+# peco
+if [[ -s ~/.peco.zshrc -a -x "$(command -v peco)" ]]; then
+  source ~/.peco.zshrc
+fi
+
+
 export PATH=~/bin:$PATH
 
 # 環境判定
