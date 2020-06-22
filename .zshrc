@@ -107,10 +107,6 @@ if [ -x "$(command -v mplayer)" ]; then
     alias mplayer='mplayer -fs'
 fi
 
-if [ -x "$(command -v peco)" ]; then
-    alias ss='ssh $(grep -iE "^host[[:space:]]+[^*]" ~/.ssh/config|sort|uniq|peco|awk "{print \$2}")'
-fi
-
 
 ## typo対策
 alias l='ls'
