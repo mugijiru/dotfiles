@@ -151,3 +151,5 @@ if [ `uname` = "Darwin" ]; then
     source ~/.private.zshrc
   fi
 fi
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
