@@ -1,0 +1,22 @@
+* dotfiles
+
+zshrc などの dotfile を登録しているリポジトリ。
+
+** 使い方
+
+どこかにチェックアウトしておいて
+ホームディレクトリに ~ln -s /path/to/dotfiles/.zshrc ~/.zfhrc~
+みたいにしてリンクを張って使う
+
+** 依存ツール
+
+*** fzf
+
+    .fzf.bash, .fzf.zsh をリポジトリに登録してあるので
+
+    #+begin_src sh
+    ln -s /path/to/dotfiles/.fzf.bash ~/.fzf.bash
+    ln -s /path/to/dotfiles/.fzf.zsh ~/.fzf.zsh
+    #+end_src
+
+    としてホームディレクトリから設定ファイルにリンクする
