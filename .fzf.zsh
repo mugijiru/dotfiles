@@ -6,8 +6,19 @@ fi
 
 # Auto-completion
 # ---------------
-[[ $- == *i* ]] && source "/home/mugijiru/.fzf/shell/completion.zsh" 2> /dev/null
+if [[ $- == *i* ]]; then
+  if [ -e "/home/mugijiru/.fzf/shell/completion.zsh" ]; then
+    source "/home/mugijiru/.fzf/shell/completion.zsh"
+  elif [ -e "/usr/share/fzf/completion.zsh" ]; then
+    source "/usr/share/fzf/completion.zsh"
+  fi
+fi
 
 # Key bindings
 # ------------
-source "/home/mugijiru/.fzf/shell/key-bindings.zsh"
+if [ -e "/home/mugijiru/.fzf/shell/key-bindings.zsh" ]; then
+  source "/home/mugijiru/.fzf/shell/key-bindings.zsh"
+elif [ -e "/usr/share/fzf/key-bindings.zsh" ]; then
+  source "/usr/share/fzf/key-bindings.zsh"
+fi
+
