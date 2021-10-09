@@ -1,1 +1,14 @@
-feh --bg-scale /usr/share/backgrounds/konata.jpg
+export DefaultIMModule=fcitx
+export GTK_IM_MODULE=fcitx
+export QT_IM_MODULE=fcitx
+export XMODIFIERS="@im=fcitx"
+
+# Disable Capslock
+setxkbmap -option "ctrl:nocaps"
+
+# Set Key Repeat
+xset r rate 200 25
+
+# Set Display Resolution and Position
+xrandr --output eDP-1 --mode 2880x1620 --right-of DP-2
+
