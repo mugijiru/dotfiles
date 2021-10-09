@@ -11,4 +11,6 @@
 
 [user]
 	name = mugijiru
-	email = kirinbiiru+pg@gmail.com
+	email = 106833+mugijiru@users.noreply.github.com
+[core]
+	editor = vim
