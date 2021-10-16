@@ -14,3 +14,6 @@
 	email = 106833+mugijiru@users.noreply.github.com
 [core]
 	editor = vim
+[credential "https://github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
