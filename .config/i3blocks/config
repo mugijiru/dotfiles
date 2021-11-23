@@ -132,7 +132,7 @@ DATEFTM=+%Y/%m/%d(%a)
 #
 [time]
 label= 
-command=date '+%m/%d %H:%M'
+command=date '+%H:%M'
 interval=5
 
 # Generic media player support
