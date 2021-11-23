@@ -16,4 +16,10 @@ setxkbmap -option "ctrl:nocaps"
 # Set Key Repeat
 xset r rate 200 25
 
+# for MD650L(チルダの位置が Esc になってるので調整)
 
+## ESC as grave and asciitilde(Esc をチルダとして扱う)
+xmodmap -e 'keycode 9 = grave asciitilde grave asciitilde'
+
+## Ctrl Left as Esc(左 Ctrl を Esc として扱う)
+xmodmap -e 'keycode 37 = Escape NoSymbol Escape'
