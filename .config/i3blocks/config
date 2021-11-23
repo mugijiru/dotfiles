@@ -120,6 +120,14 @@ markup=pango
 interval=30
 
 
+[rofi-calendar]
+interval=3600
+FONT=Monospace 20
+PREV_MONTH_TEXT=&lt; 前月
+NEXT_MONTH_TEXT=翌月 &gt;
+WEEK_START=sunday
+DATEFTM=+%Y/%m/%d(%a)
+
 # Date Time
 #
 [time]
