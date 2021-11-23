@@ -55,8 +55,8 @@ QUIET=true
 BASE_COLOR=#5fff5f
 UPDATE_COLOR=#FFFF85
 # AUR=true
-LABEL= eparator=false
 
+LABEL= 
 
 #STEP=5%
 
