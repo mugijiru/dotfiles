@@ -68,6 +68,7 @@ label=
 interval=persist
 markup=pango
 bar_chars=_▁▂▃▄▅▆▇█
+color=#aaaaff
 
 # bar_size=20
 # critical=50
