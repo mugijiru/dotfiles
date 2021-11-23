@@ -4,7 +4,13 @@ export QT_IM_MODULE=fcitx
 export XMODIFIERS="@im=fcitx"
 
 # Set Display Resolution and Position
-xrandr --output eDP-1 --mode 2880x1620 --right-of DP-2
+# if xrandr | grep "DP-2 disconnected"; then
+#     xrandr --output eDP-1 --mode 1920x1080 --output DP-2 --off
+# else
+#     xrandr --output eDP-1 --mode 2880x1620 --right-of DP-2
+# fi
+autorandr --change
+
 
 #####################
   Keyboard Settings
