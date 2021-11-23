@@ -87,7 +87,6 @@ color=#aaaaff
 # (defaults to 10 for 10%).
 [disk]
 label= 
-#DIR=/mnt/data
 interval=30
 
 # CPU usage
