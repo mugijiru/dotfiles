@@ -185,6 +185,10 @@ bindsym $mod+r mode "resize"
 # finds out, if available)
 bar {
         status_command i3blocks
+        separator_symbol 
+	colors {
+ 	  separator #ffff00
+	}
 }
 
 exec_always --no-startup-id autotiling
