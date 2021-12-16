@@ -5,9 +5,9 @@ export XMODIFIERS="@im=fcitx"
 
 # Set Display Resolution and Position
 # if xrandr | grep "DP-2 disconnected"; then
-#     xrandr --output eDP-1 --mode 1920x1080 --output DP-2 --off
+#     xrandr --output eDP-1 --mode 2880x1620 --output DP-2 --off
 # else
-#     xrandr --output eDP-1 --mode 2880x1620 --right-of DP-2
+#     xrandr --output eDP-1 --mode 1920x1080 --right-of DP-2
 # fi
 autorandr --change
 
