@@ -9,8 +9,11 @@ export XMODIFIERS="@im=fcitx"
 # else
 #     xrandr --output eDP-1 --mode 1920x1080 --right-of DP-2
 # fi
-autorandr --change
 
+# autorandr がある時のみディスプレイの自動検出・設定を実行する
+if [ -x "$(command -v autorandr)" ]; then
+   autorandr --change
+fi
 
 #####################
 #  Keyboard Settings
