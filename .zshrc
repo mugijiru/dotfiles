@@ -160,3 +160,5 @@ if [ -e "$XDG_RUNTIME_DIR/ssh-agent.socket" ]; then
 fi
 
 source /opt/asdf-vm/asdf.sh
+
+eval "$(direnv hook zsh)"
