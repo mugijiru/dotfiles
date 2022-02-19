@@ -5,9 +5,10 @@
 	st = status
 	ci = commit
 	co = checkout
-        df = diff
-        br = branch
-        tree = log --graph --pretty=oneline --decorate --date=short --abbrev-commit --branches
+	df = diff
+	br = branch
+	gn = grep -n
+	tree = log --graph --pretty=oneline --decorate --date=short --abbrev-commit --branches
 
 [user]
 	name = mugijiru
