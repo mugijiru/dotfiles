@@ -47,6 +47,11 @@ label=
 interval=once
 signal=10
 
+[emacs-update]
+command=emacs --batch -Q -l ~/.emacs.d//el-get-lock-update-check.el --eval='(el-get-lock-update-check-execute t)' 2> /dev/null
+label=Emacs:
+interval=1800
+
 [arch-update]
 markup=pango
 interval= 3600
@@ -145,5 +150,3 @@ interval=5
 #instance=vlc,%any,spotify
 #interval=5
 #signal=10
-
-
