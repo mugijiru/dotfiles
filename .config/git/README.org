@@ -1,0 +1,9 @@
+# How to use
+
+このリポジトリを ~/path/to/dotfiles/~ に Checkout している場合
+
+#+begin_example
+$ ln -s ln -s /path/to/dotfiles/.config/git ~/.config/git
+#+end_example
+
+とするして ~.config/git~ に symlink を張って使ってください。
