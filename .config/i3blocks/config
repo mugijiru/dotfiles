@@ -48,9 +48,9 @@ interval=once
 signal=10
 
 [emacs-update]
-command=emacs --batch -Q -l ~/.emacs.d//el-get-lock-update-check.el --eval='(el-get-lock-update-check-execute t)' 2> /dev/null
+command=~/.emacs.d/count-emacs-obsolute-packages.sh 2> /dev/null
 label=Emacs:
-interval=1800
+interval=300
 
 [arch-update]
 markup=pango
