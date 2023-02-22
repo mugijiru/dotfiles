@@ -54,6 +54,10 @@ bindsym $mod+Shift+q kill
 
 # start rofi -show drun (a program launcher)
 bindsym $mod+d exec --no-startup-id rofi -modi drun -show drun
+
+# rofi-rbw bitwarden
+bindsym $mod+b exec --no-startup-id rofi-rbw
+
 # A more modern dmenu replacement is rofi:
 # bindcode $mod+40 exec "rofi -modi drun,run -show drun"
 # There also is i3-dmenu-desktop which only displays applications shipping a
