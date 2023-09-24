@@ -42,6 +42,8 @@ bindsym XF86AudioRaiseVolume exec amixer -q -D pulse sset Master 5%+ && pkill -R
 bindsym XF86AudioLowerVolume exec amixer -q -D pulse sset Master 5%- && pkill -RTMIN+10 i3blocks
 bindsym XF86AudioMute exec amixer -q -D pulse sset Master toggle && pkill -RTMIN+10 i3blocks
 
+# Wallpaper
+exec --no-startup-id ~/.fehbg
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
