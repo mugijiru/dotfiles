@@ -35,12 +35,17 @@ interval=60
 format=json
 markup=pango
 
+# Backlight indicator
+[backlight]
+label=☀ 
+interval=once
+signal=5
+
 # Volume indicator
 #
 # The first parameter sets the step (and units to display)
 # The second parameter overrides the mixer selection
 # See the script for details.
-
 
 [volume]
 label= 
