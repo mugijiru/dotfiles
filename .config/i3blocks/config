@@ -59,7 +59,7 @@ interval=300
 
 [arch-update]
 markup=pango
-interval= 3600
+interval=3600
 QUIET=true
 # WATCH=^linux.* ^pacman.*
 BASE_COLOR=#5fff5f
