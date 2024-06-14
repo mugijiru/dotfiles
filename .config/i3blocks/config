@@ -64,7 +64,7 @@ QUIET=true
 # WATCH=^linux.* ^pacman.*
 BASE_COLOR=#5fff5f
 UPDATE_COLOR=#FFFF85
-# AUR=true
+AUR_YAY=true
 
 LABEL= 
 
