@@ -69,8 +69,9 @@ setopt pushd_ignore_dups
 # コマンド名をミスった時に「ほんとにええのんか?」って聞いてくる
 setopt correct
 
-# Emacs 風のキーバインドにする
-bindkey -e
+# C-h で1文字消す挙動にする
+# manjaro のデフォルト設定だと 1 word 消すようだったので調整
+bindkey '^H' backward-delete-char
 
 # End of lines configured by zsh-newuser-install
 # The following lines were added by compinstall
