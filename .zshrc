@@ -69,7 +69,6 @@ compinit
 # 補完時に色設定。正直、この設定で何が変わってるのかわかってない
 zstyle ':completion:*' list-colors ''
 
-
 # URLの文字列を自動的にescape
 autoload -Uz url-quote-magic
 
@@ -81,7 +80,6 @@ zle -N self-insert url-quote-magic
 
 # Macの日本語ファイル名(濁点など)対策に
 setopt combining_chars
-
 
 # aliases
 ## pipe系
