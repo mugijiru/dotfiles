@@ -1,24 +1,38 @@
+# Use powerline
+USE_POWERLINE="true"
+# Has weird character width
+# Example:
+#    is not a diamond
+HAS_WIDECHARS="false"
+# Source manjaro-zsh-configuration
+if [[ -e /usr/share/zsh/manjaro-zsh-config ]]; then
+  source /usr/share/zsh/manjaro-zsh-config
+fi
+# Use manjaro zsh prompt
+if [[ -e /usr/share/zsh/manjaro-zsh-prompt ]]; then
+  source /usr/share/zsh/manjaro-zsh-prompt
+else
+  # PROMPT
+  PROMPT='%n@%m:%(5~,%-2~/.../%2~,%~)
+  %# '
+
+  # RPROMPT(ブランチ名を表示するとか)
+  autoload -Uz vcs_info
+  zstyle ':vcs_info:*' formats '(%s)-[%b]'
+  zstyle ':vcs_info:*' actionformats '(%s)-[%b|%a]'
+  precmd () {
+    psvar=()
+    LANG=en_US.UTF-8 vcs_info
+    [[ -n "$vcs_info_msg_0_" ]] && psvar[1]="$vcs_info_msg_0_"
+  }
+  RPROMPT="%1(v|%F{green}%1v%f|)"
+fi
+
 # ENV
 export LANG=ja_JP.UTF-8
-export HGENCODING=utf-8
-
-# PROMPT
-PROMPT='%n@%m:%(5~,%-2~/.../%2~,%~)
-%# '
-
-# RPROMPT(ブランチ名を表示するとか)
-autoload -Uz vcs_info
-zstyle ':vcs_info:*' formats '(%s)-[%b]'
-zstyle ':vcs_info:*' actionformats '(%s)-[%b|%a]'
-precmd () {
-  psvar=()
-  LANG=en_US.UTF-8 vcs_info
-  [[ -n "$vcs_info_msg_0_" ]] && psvar[1]="$vcs_info_msg_0_"
-}
-RPROMPT="%1(v|%F{green}%1v%f|)"
 
 # Lines configured by zsh-newuser-install
-HISTFILE=~/.histfile
+HISTFILE=~/.zhistory
 HISTSIZE=100000000
 SAVEHIST=100000000
 
@@ -55,20 +69,9 @@ setopt pushd_ignore_dups
 # コマンド名をミスった時に「ほんとにええのんか?」って聞いてくる
 setopt correct
 
-# Emacs 風のキーバインドにする
-bindkey -e
-
-# End of lines configured by zsh-newuser-install
-# The following lines were added by compinstall
-zstyle :compinstall filename "$HOME/.zshrc"
-
-autoload -Uz compinit
-compinit
-# End of lines added by compinstall
-
-# 補完時に色設定。正直、この設定で何が変わってるのかわかってない
-zstyle ':completion:*' list-colors ''
-
+# C-h で1文字消す挙動にする
+# manjaro のデフォルト設定だと 1 word 消すようだったので調整
+bindkey '^H' backward-delete-char
 
 # URLの文字列を自動的にescape
 autoload -Uz url-quote-magic
@@ -82,18 +85,12 @@ zle -N self-insert url-quote-magic
 # Macの日本語ファイル名(濁点など)対策に
 setopt combining_chars
 
-
 # aliases
 ## pipe系
 alias -g H='| head'
 alias -g T='| tail -F'
 alias -g G='| grep'
-
-if [ -x "$(command -v lv)" ]; then
-    alias -g L='| lv -c'
-else
-    alias -g L='| less -R'
-fi
+alias -g L='| less -R'
 
 ## 短縮系
 alias vi='vim'
@@ -103,11 +100,6 @@ alias grep='grep --color'
 alias ..='cd ..'
 alias cless='grep -v -e "-^$" -e "^[ \t]*#"' # 空行とコメント行を抜いて見るため
 
-if [ -x "$(command -v mplayer)" ]; then
-    alias mplayer='mplayer -fs'
-fi
-
-
 ## typo対策
 alias l='ls'
 alias s='ls'
@@ -116,49 +108,20 @@ alias snv='svn'
 alias c='cd'
 alias cd..='cd ..'
 
+export PATH="$HOME/.local/bin:$HOME/bin:$PATH"
 
-if [ -e ~/.peco.zshrc -a -x "$(command -v peco)" ]; then
-  source ~/.peco.zshrc
+# fzf
+if (( $+commands[fzf] )); then
+  source <(fzf --zsh)
 fi
-
-if [ -e ~/.gnumeric.zshrc ]; then
-  source ~/.gnumeric.zshrc
-fi
-
-
-export PATH=~/bin:$PATH
-
-# 環境判定
-## Linux(Ubuntu)
-if [ `uname` = "Linux" ]; then
-  alias ls='ls -FG --color=auto'
-  alias pcsuspend='sudo pm-suspend --quirk-s3-bios --quirk-s3-mode; xlock'
-fi
-
-## Mac OS X
-if [ `uname` = "Darwin" ]; then
-  alias ls='ls -FG'
-  alias top='top -o cpu'
-  alias nethack='jnethack'
-  alias mysql='mysql5'
-
-  export JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Versions/1.6/Home
-  export EC2_HOME=/usr/local/ec2-api-tools
-  export AWS_ELB_HOME=/usr/local/ElasticLoadBalancing
-  export PATH=$PATH:$JAVA_HOME/bin:$EC2_HOME/bin:$AWS_ELB_HOME/bin
-
-  if [[ -s ~/.private.zshrc ]] ; then
-    source ~/.private.zshrc
-  fi
-fi
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # use ssh agent with systemd
 if [ -e "$XDG_RUNTIME_DIR/ssh-agent.socket" ]; then
   export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
 fi
 
-source /opt/asdf-vm/asdf.sh
-
+# direnv
 eval "$(direnv hook zsh)"
+
+# mise
+eval "$(mise activate zsh)"
