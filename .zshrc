@@ -90,12 +90,7 @@ setopt combining_chars
 alias -g H='| head'
 alias -g T='| tail -F'
 alias -g G='| grep'
-
-if [ -x "$(command -v lv)" ]; then
-    alias -g L='| lv -c'
-else
-    alias -g L='| less -R'
-fi
+alias -g L='| less -R'
 
 ## 短縮系
 alias vi='vim'
