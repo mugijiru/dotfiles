@@ -32,7 +32,7 @@ fi
 export LANG=ja_JP.UTF-8
 
 # Lines configured by zsh-newuser-install
-HISTFILE=~/.histfile
+HISTFILE=~/.zhistory
 HISTSIZE=100000000
 SAVEHIST=100000000
 
