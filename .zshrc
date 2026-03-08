@@ -101,11 +101,6 @@ alias grep='grep --color'
 alias ..='cd ..'
 alias cless='grep -v -e "-^$" -e "^[ \t]*#"' # 空行とコメント行を抜いて見るため
 
-if [ -x "$(command -v mplayer)" ]; then
-    alias mplayer='mplayer -fs'
-fi
-
-
 ## typo対策
 alias l='ls'
 alias s='ls'
@@ -113,11 +108,6 @@ alias ks='ls'
 alias snv='svn'
 alias c='cd'
 alias cd..='cd ..'
-
-
-if [ -e ~/.peco.zshrc -a -x "$(command -v peco)" ]; then
-  source ~/.peco.zshrc
-fi
 
 if [ -e ~/.gnumeric.zshrc ]; then
   source ~/.gnumeric.zshrc
