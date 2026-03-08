@@ -108,10 +108,6 @@ alias snv='svn'
 alias c='cd'
 alias cd..='cd ..'
 
-if [ -e ~/.gnumeric.zshrc ]; then
-  source ~/.gnumeric.zshrc
-fi
-
 export PATH="$HOME/.local/bin:$HOME/bin:$PATH"
 
 # fzf
