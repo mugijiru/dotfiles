@@ -113,8 +113,8 @@ if [ -e ~/.gnumeric.zshrc ]; then
   source ~/.gnumeric.zshrc
 fi
 
+export PATH="$HOME/.local/bin:$HOME/bin:$PATH"
 
-export PATH=~/bin:$PATH
 
 # 環境判定
 ## Linux(Ubuntu)
