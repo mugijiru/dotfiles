@@ -1,20 +1,35 @@
+# Use powerline
+USE_POWERLINE="true"
+# Has weird character width
+# Example:
+#    is not a diamond
+HAS_WIDECHARS="false"
+# Source manjaro-zsh-configuration
+if [[ -e /usr/share/zsh/manjaro-zsh-config ]]; then
+  source /usr/share/zsh/manjaro-zsh-config
+fi
+# Use manjaro zsh prompt
+if [[ -e /usr/share/zsh/manjaro-zsh-prompt ]]; then
+  source /usr/share/zsh/manjaro-zsh-prompt
+else
+  # PROMPT
+  PROMPT='%n@%m:%(5~,%-2~/.../%2~,%~)
+  %# '
+
+  # RPROMPT(ブランチ名を表示するとか)
+  autoload -Uz vcs_info
+  zstyle ':vcs_info:*' formats '(%s)-[%b]'
+  zstyle ':vcs_info:*' actionformats '(%s)-[%b|%a]'
+  precmd () {
+    psvar=()
+    LANG=en_US.UTF-8 vcs_info
+    [[ -n "$vcs_info_msg_0_" ]] && psvar[1]="$vcs_info_msg_0_"
+  }
+  RPROMPT="%1(v|%F{green}%1v%f|)"
+fi
+
 # ENV
 export LANG=ja_JP.UTF-8
-
-# PROMPT
-PROMPT='%n@%m:%(5~,%-2~/.../%2~,%~)
-%# '
-
-# RPROMPT(ブランチ名を表示するとか)
-autoload -Uz vcs_info
-zstyle ':vcs_info:*' formats '(%s)-[%b]'
-zstyle ':vcs_info:*' actionformats '(%s)-[%b|%a]'
-precmd () {
-  psvar=()
-  LANG=en_US.UTF-8 vcs_info
-  [[ -n "$vcs_info_msg_0_" ]] && psvar[1]="$vcs_info_msg_0_"
-}
-RPROMPT="%1(v|%F{green}%1v%f|)"
 
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.histfile
