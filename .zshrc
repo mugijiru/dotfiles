@@ -115,7 +115,10 @@ fi
 
 export PATH="$HOME/.local/bin:$HOME/bin:$PATH"
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# fzf
+if (( $+commands[fzf] )); then
+  source <(fzf --zsh)
+fi
 
 # use ssh agent with systemd
 if [ -e "$XDG_RUNTIME_DIR/ssh-agent.socket" ]; then
