@@ -1,6 +1,5 @@
 # ENV
 export LANG=ja_JP.UTF-8
-export HGENCODING=utf-8
 
 # PROMPT
 PROMPT='%n@%m:%(5~,%-2~/.../%2~,%~)
