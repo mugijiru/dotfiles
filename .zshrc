@@ -73,17 +73,6 @@ setopt correct
 # manjaro のデフォルト設定だと 1 word 消すようだったので調整
 bindkey '^H' backward-delete-char
 
-# End of lines configured by zsh-newuser-install
-# The following lines were added by compinstall
-zstyle :compinstall filename "$HOME/.zshrc"
-
-autoload -Uz compinit
-compinit
-# End of lines added by compinstall
-
-# 補完時に色設定。正直、この設定で何が変わってるのかわかってない
-zstyle ':completion:*' list-colors ''
-
 # URLの文字列を自動的にescape
 autoload -Uz url-quote-magic
 
