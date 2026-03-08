@@ -147,6 +147,4 @@ if [ -e "$XDG_RUNTIME_DIR/ssh-agent.socket" ]; then
   export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
 fi
 
-source /opt/asdf-vm/asdf.sh
-
 eval "$(direnv hook zsh)"
