@@ -1,0 +1,13 @@
+{
+    "include": [
+        "/usr/share/sway/templates/waybar/config.jsonc"
+    ],
+    "clock": {
+        "interval": 60,
+        "locale": "ja_JP.UTF-8",
+        "format": "{:%Y/%m/%d(%a) %H:%M}",
+        "tooltip": true,
+        "tooltip-format": "<big>{:%B %Y}</big>\n<tt>{calendar}</tt>",
+        "on-click": "swaymsg exec \\$calendar"
+    }
+}
