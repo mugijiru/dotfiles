@@ -1,0 +1,15 @@
+set smoothscroll true
+set hintchars wertasdfgzxcvb
+
+# F1 で Tridactyl のヘルプが出ないようにする
+# ツリー型タブの表示切り替えに使っているため
+unbind <F1>
+
+bind x tabclose
+
+unbindurl mail.google.com/mail r
+unbindurl mail.google.com/mail j
+unbindurl mail.google.com/mail k
+unbindurl mail.google.com/mail c
+unbindurl mail.google.com/mail x
+unbindurl mail.google.com/mail u
