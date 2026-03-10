@@ -2,6 +2,14 @@
     "include": [
         "/usr/share/sway/templates/waybar/config.jsonc"
     ],
+    // "custom/pacman": {
+    //     "format": "📦 {}",
+    //     "interval": 3600,
+    //     "return-type": "json",
+    //     "exec": "printf '{\"text\":\"%s\"}' \"$(pamac checkupdates -a -q 2>/dev/null | wc -l)\"",
+    //     "exec-if": "[ $(pamac checkupdates -a -q 2>/dev/null | wc -l) -gt 0 ]",
+    //     "on-click": "pamac-manager --updates"
+    // },
     "clock": {
         "interval": 60,
         "locale": "ja_JP.UTF-8",
